@@ -1,0 +1,4 @@
+4.6792E-3   The Sun
+1.631E-5    The Mercury
+4.0454E-5   The Venus
+4.2635E-5   The Earth
