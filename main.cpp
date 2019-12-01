@@ -4,16 +4,15 @@
 #include <cmath>
 #include <fstream>
 #include <ctime>
-#include <iostream> //для отладки
 double t_u=100;
-//относительно реального времени в секундах(для вывода на экран)
-int S_pix=100;//сколько занимает в пикселях единица измерения расстояния(для вывода на экран)
-const double S_u=1; //единица измерения расстояния в а.е.
-const double t=0.01;//1=1 месяц; 1/30=1 день; 2=2 месяца и т.д.(для определения точности вычислений)
+//it's relatively real time in seconds(for ounput on screen)
+int S_pix=100;//how much a distance unit has pixels(for output on screen)
+const double S_u=1; //the unit of distance in astronomical units
+const double t=0.01;//1=1 a month; 1/30=1 a day; 2=2 months e.t.c(for setting an accuracy of calculations)
 const double G=(7.9715E-7*pow(t,2))/pow(S_u,3);
-const int N=4;//количество планет
-const int Width=1920;//ширина экрана в пикселях
-const int Height=1080;//высота экрана в пикселях
+const int N=4;//a count of planets
+const int Width=1920;//a screen
+const int Height=1080;//a screen
 int Sun_x=Width/2;
 int Sun_y=Height/2;
 class Planet{
@@ -52,8 +51,8 @@ public:
     void Sum(double F, double px, double py){
         double dx=px-x;
         double dy=py-y;
-        double lb=sqrt(pow(dx,2)+pow(dy,2));//расстояние м/д двумя телами
-        double div=F/lb;//отношение из подобия треугольников
+        double lb=sqrt(pow(dx,2)+pow(dy,2));//it's distance between 2 bodies
+        double div=F/lb;//a relation from triangle similarity
         double lx=div*dx;
         double ly=div*dy;
         v.x+=lx/m;
@@ -66,15 +65,10 @@ public:
     }
 };
 
-//double Force(double m1, double m2, double l){
-//   return (G*m1*m2)/pow(l,2);
-//}
-
 int main(){
-    //0.0000631 p[1]
     Planet p[N];
-    p[0]=Planet(333000,4.6792E-2,0,0,0,0,255,255,0);//4.6792E-3 радиус
-    p[1]=Planet(5.5274E-2,4.6792E-2,0.4667,0,0,-0.698550,255,0,0);//1.631E-5 радиус
+    p[0]=Planet(333000,4.6792E-2,0,0,0,0,255,255,0);//4.6792E-3 is real radius
+    p[1]=Planet(5.5274E-2,4.6792E-2,0.4667,0,0,-0.698550,255,0,0);//1.631E-5 is real radius e.t.c
     p[2]=Planet(0.815,4.6792E-2,0.723,0,0,-0.631764,218,165,32);//4.0454E-5
     p[3]=Planet(1,4.6792E-2,1.01671388,0,0,-0.527072,0,250,154);//4.2635E-5
     sf::RenderWindow window(sf::VideoMode(Width, Height), "Solar Sistem");
@@ -83,7 +77,7 @@ int main(){
     spacetexture.loadFromFile("../images/space.jpg");
     sf::Sprite spacesprite(spacetexture);
     float t1=(clock()/(double)CLOCKS_PER_SEC)*10000;
-    int flag=0;//установка камеры на планету/звезду(0-солнце,1-меркурий и т.д. до 9)
+    int flag=0;//to set the camera to a planet/the Sun(0-the Sun,1-the Mercury e.t.c to 9)
     while (window.isOpen()){
         sf::Event event;
         while (window.pollEvent(event)){
@@ -99,10 +93,10 @@ int main(){
                 }
             }
             if(event.type == sf::Event::MouseButtonPressed){
-                if(event.mouseButton.button==sf::Mouse::Left){//замедление времени
+                if(event.mouseButton.button==sf::Mouse::Left){//slowdown of time
                     t_u*=2;
                 }
-                if(event.mouseButton.button==sf::Mouse::Right){//ускорение времени
+                if(event.mouseButton.button==sf::Mouse::Right){//boost of time
                     t_u/=2;
                 }
             }
@@ -115,7 +109,7 @@ int main(){
             Sun_y+=50;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)||sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             Sun_x+=50;
-        //переключение камеры между планетами
+        //changing the camera from a planet to a planet
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0)||sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0))
             flag=0;
         if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)||sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))&& N>0)
@@ -156,8 +150,7 @@ int main(){
                     p[j].Get_coordinates(xj,yj);
                     double F=Gm*p[j].Get_m();
                     F/=pow(sqrt(pow(xj-xi,2)+pow(yj-yi,2)),2);
-                    p[i].Sum(F,xj,yj);//в будущем можно добавить буфер
-                    //std::cout<<sqrt(pow(xj-xi,2)+pow(yj-yi,2))<<std::endl;
+                    p[i].Sum(F,xj,yj);
                 }
             }
             p[i].Step();
