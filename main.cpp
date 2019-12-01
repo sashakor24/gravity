@@ -5,14 +5,14 @@
 #include <fstream>
 #include <ctime>
 double t_u=100;
-//it's relatively real time in seconds(for ounput on screen)
-int S_pix=100;//how much a distance unit has pixels(for output on screen)
+//it's relatively real time in seconds(for output on the screen)
+int S_pix=100;//how much a distance unit has pixels(for output on the screen)
 const double S_u=1; //the unit of distance in astronomical units
 const double t=0.01;//1=1 a month; 1/30=1 a day; 2=2 months e.t.c(for setting an accuracy of calculations)
 const double G=(7.9715E-7*pow(t,2))/pow(S_u,3);
 const int N=4;//a count of planets
-const int Width=1920;//a screen
-const int Height=1080;//a screen
+const int Width=1920;//a size of frame
+const int Height=1080;
 int Sun_x=Width/2;
 int Sun_y=Height/2;
 class Planet{
