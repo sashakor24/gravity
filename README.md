@@ -16,4 +16,4 @@ Firstly, more planets can't fit to the frame because they're gone far apart(from
 Secondly, the sizes of planets very small relatively to the Sun. Therefore we have a circle-sun and points-planets.
 I decided to make simulation for only 3 planets and the Sun, to make the same radiuses for all objects(I got from radius of the Sun).
 
-It seems you'll like my program. I wish you a happy viewing.
+It seems you'll like my program. Have a happy viewing.
