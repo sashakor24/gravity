@@ -74,7 +74,7 @@ int main(){
     sf::RenderWindow window(sf::VideoMode(Width, Height), "Solar Sistem");
     window.setFramerateLimit(60);
     sf::Texture spacetexture;
-    spacetexture.loadFromFile("../images/space.jpg");
+    spacetexture.loadFromFile("images/space.jpg");
     sf::Sprite spacesprite(spacetexture);
     float t1=(clock()/(double)CLOCKS_PER_SEC)*10000;
     int flag=0;//to set the camera to a planet/the Sun(0-the Sun,1-the Mercury e.t.c to 9)
