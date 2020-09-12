@@ -326,6 +326,7 @@ int main()
 			step();
 			tcalc = std::chrono::system_clock::now();
 		}
+		t = std::chrono::system_clock::now();
 		if (std::chrono::duration_cast<std::chrono::microseconds>(t - tframe).count() / (float) 1000000 > FRAME_TIME)
 		{
 			draw();
